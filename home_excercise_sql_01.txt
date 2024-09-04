@@ -1,0 +1,339 @@
+# Exercise 01
+# 01
+'''
+Create/Drop table:
+CREATE TABLE shopping (id INTEGER PRIMARY KEY, name TEXT, amount INTEGER);
+
+Creates a table called shopping with id field as a primary key of integer type,
+and a field of name of text type,
+and a field of amount of integer type,
+
+DROP TABLE shopping
+
+Deletion of the shopping table
+'''
+
+# 02
+'''
+Rename table:
+ALTER table shopping RENAME to shopp
+Changes the name of the table to shopp
+
+ALTER table shopp RENAME to shopping
+Renames the table back to the original name
+'''
+
+# 03
+,,,
+Insert rows into table:
+INSERT INTO shopping VALUES (1, 'Avokado', 5);
+INSERT INTO shopping VALUES (2, 'Milk', 2);
+INSERT INTO shopping VALUES (3, 'Bread', 3);
+INSERT INTO shopping VALUES (4, 'Chocolate', 8);
+INSERT INTO shopping VALUES (5, 'Bamba', 5);
+INSERT INTO shopping VALUES (6, 'Orange', 10);
+
+Adds 6 initial values to the table, for example the first value is: id 1, name Avokado, amount 5
+,,,
+
+# 04
+,,,
+Display table:
+select *
+from shopping
+
+Selects all records and displays the entire table
+,,,
+
+# 05
+,,,
+SELECT id, name
+FROM shopping
+
+Selects all the records belonging to the ID and name fields and displays them on the screen
+'''
+
+# 06
+,,,
+SELECT *
+FROM shopping
+WHERE amount > 5
+
+Filters only the records which are greater than the number five under the amount field,
+and displays only two records that meet this condition in the table
+
+SELECT *
+FROM shopping
+WHERE amount = 2
+
+Filters only the records which are equal to the number two under the amount field,
+and displays only one record that meet this condition in the table
+
+SELECT *
+FROM shopping
+WHERE name LIKE 'Bamba'
+
+Filters only the records that has the name Bamba under the name field,
+and displays only one record that meet this condition in the table
+'''
+
+# 07
+,,,
+DELETE from shopping WHERE name like 'Orange';
+
+Deletes one record in the table whose name is Orange under the name field
+'''
+
+# 08
+,,,
+UPDATE shopping SET name = 'Bisli' WHERE name LIKE 'Bamba'
+
+Updates the record that is under the name field with the value Bamba and replaces it with the value Bisli
+
+UPDATE shopping SET amount = 1 WHERE name LIKE 'Milk'
+
+Updates the record under the name field with the value milk and replaces the value under the amount field to one
+,,,
+
+# 09
+,,,
+ALTER TABLE shopping ADD COLUMN maavar
+
+Adds a new field to the table without values with the name maavar
+,,,
+
+# 10
+,,,
+UPDATE shopping SET maavar = 6 WHERE id = 1;
+UPDATE shopping SET maavar = 3 WHERE id = 2;
+UPDATE shopping SET maavar = 12 WHERE id = 3;
+UPDATE shopping SET maavar = 8 WHERE id = 4;
+UPDATE shopping SET maavar = 5 WHERE id = 5;
+
+Adds 6 values to the new field with the name maavar according to the id number
+'''
+
+# 11
+,,,
+SELECT *
+FROM shopping
+WHERE amount > 1 AND maavar > 5
+
+Filters 3 records whose value under amount field is greater than one
+and also whose value under maavar field is greater than five and displays them on the screen
+
+SELECT *
+FROM shopping
+WHERE maavar BETWEEN 3 AND 5
+
+Filters 2 records whose value under maavar field is between 3 and 5 and displays them on the screen
+'''
+
+# 12
+,,,
+SELECT *
+FROM shopping
+ORDER BY maavar
+
+Sorts the values under maavar field from the smallest to the largest and displays the table on the screen
+
+SELECT *
+FROM shopping
+ORDER BY maavar DESC
+
+Sorts the values under maavar field from the largest to the smallest and displays the table on the screen
+'''
+
+# 13
+,,,
+CREATE TABLE books (id INTEGER PRIMARY KEY, name TEXT);
+
+Creates a new table called books with id field as a primary key of integer type and a field of name of text type
+
+INSERT INTO books VALUES (1, 'SQL PROGRAMMING');
+
+Adds a new record to the table with the value 1 under id field,
+and with the value SQL PROGRAMMING under name field
+
+INSERT INTO books VALUES (2, 'CSHARP PROGRAMMING');
+
+Adds a new record to the table with the value 2 under id field,
+and with the value CSHARP PROGRAMMING under name field
+
+DELETE FROM books;
+
+Deletes all records from the book table
+,,,
+
+# 14
+,,,
+SELECT COUNT(*)
+from shopping
+
+Count the number of records that exist in the shopping table
+
+SELECT MAX(amount)
+from shopping
+
+Extracts the maximum value under the amount field and displays it on the screen
+
+SELECT AVG(amount)
+from shopping
+
+Extracts the average value under the amount field and displays it on the screen
+
+SELECT MIN(amount)
+from shopping
+
+Extracts the minimum value under the amount field and displays it on the screen
+'''
+
+# 15
+,,,
+INSERT INTO shopping VALUES (6, 'Onions', 3, 6);
+
+Adds to the shopping table a record with the value 6 under the id field,
+with the value Onions under the name field,
+with the value 3 under the amount field,
+and with the value 6 under the maavar field
+
+INSERT INTO shopping VALUES (7, 'Orio', 1, 8);
+
+Adds to the shopping table a record with the value 7 under the id field,
+with the value Orio under the name field,
+with the value 1 under the amount field,
+and with the value 8 under the maavar field
+
+Select maavar, COUNT(*)
+FROM shopping
+GROUP BY maavar
+
+Groups the amount of records under each category under maavar field and displays it on the screen
+'''
+
+# 16
+,,,
+SELECT id AS "SECRET", name, amount, maavar
+FROM shopping
+
+Displays the entire table on the screen after changing the name of id field with the name SECRET,
+the change was not made on the original table but only on the table that is displayed on the screen
+'''
+
+# 17
+'''
+Select maavar, COUNT(*)
+FROM shopping
+GROUP BY maavar
+HAVING COUNT(*) > 1
+
+Groups the amount of records under each category under maavar field,
+and display only the records that have more than one record on the screen
+'''
+
+# 18
+'''
+CREATE TABLE prices (id INTEGER PRIMARY KEY, price INTEGER);
+INSERT INTO prices VALUES (1, 3);
+INSERT INTO prices VALUES (2, 7);
+INSERT INTO prices VALUES (3, 12);
+INSERT INTO prices VALUES (4, 5);
+INSERT INTO prices VALUES (5, 3);
+INSERT INTO prices VALUES (6, 2);
+INSERT INTO prices VALUES (7, 10);
+
+Creates a new table called prices with id field as a primary key of integer type and a field of price of integer type,
+Adds 7 initial values to the table, for example the first value is: id 1, price 3
+
+SELECT s.id, s.name, s.amount, s.maavar, p.price
+FROM shopping s
+JOIN prices p ON s.id = p.id
+
+Merges the shopping table with the prices table based on id number,
+and displays all the records and the fields that exist in the shopping table plus the price field from the prices table
+'''
+
+# 19
+'''
+What is calculated in SECRET?
+SELECT s.id, s.name, s.amount, s.maavar, p.price, s.amount * p.price AS "SECRET"
+FROM shopping s
+JOIN prices p ON s.id = p.id
+
+In the new field SECRET, the quantity from the shopping table
+multiplied by the price from the price table for each record is calculated
+,,,
+
+# 20
+'''
+SELECT s.id, s.name, s.amount, s.maavar, p.price
+FROM shopping s
+JOIN prices p ON s.id = p.id
+WHERE p.price = (SELECT MAX(price)
+                 FROM
+                 prices)
+
+Merges the shopping table with the prices table based on id number,
+and displays only the record which have the maximum price and the fields that exist in the shopping table
+plus the price field from the prices table
+'''
+
+# Exercise 02
+# a
+CREATE TABLE Students(
+ID INT PRIMARY KEY NOT NULL,
+NAME TEXT NOT NULL,
+CITY TEXT NOT NULL,
+BIRTH INT NOT NULL
+);
+
+CREATE TABLE GRADE(
+ID INT PRIMARY KEY NOT NULL,
+GRADE INT NOT NULL
+);
+
+# b
+--Insert rows into Students table:
+INSERT INTO Students VALUES (1, 'SHALOM', 'TEL AVIV', 1974);
+INSERT INTO Students VALUES (2, 'YURI', 'RAANANA', 1980);
+INSERT INTO Students VALUES (3, 'ANAT', 'RISHON', 1994);
+INSERT INTO Students VALUES (4, 'DANA', 'REHOVOT', 1990);
+INSERT INTO Students VALUES (5, 'OMER', 'JERUSALEM', 1987);
+
+--Insert rows into GRADE table:
+INSERT INTO GRADE VALUES (1, 95);
+INSERT INTO GRADE VALUES (2, 70);
+INSERT INTO GRADE VALUES (3, 85);
+INSERT INTO GRADE VALUES (4, 99);
+INSERT INTO GRADE VALUES (5, 91);
+
+SELECT s.NAME, g.GRADE
+FROM Students s
+JOIN GRADE g ON s.ID = g.ID
+
+# c
+SELECT avg(GRADE)
+FROM GRADE
+
+# d
+ALTER TABLE GRADE ADD COLUMN EXCELLENT
+
+UPDATE GRADE SET EXCELLENT = 'YES' WHERE ID = 1;
+UPDATE GRADE SET EXCELLENT = 'NO' WHERE ID = 2;
+UPDATE GRADE SET EXCELLENT = 'NO' WHERE ID = 3;
+UPDATE GRADE SET EXCELLENT = 'YES' WHERE ID = 4;
+UPDATE GRADE SET EXCELLENT = 'YES' WHERE ID = 5;
+
+# e
+SELECT s.NAME, g.GRADE
+FROM Students s
+JOIN GRADE g ON s.ID = g.ID
+WHERE g.GRADE > (SELECT avg(GRADE)
+                 FROM GRADE)
+
+# f
+SELECT s.NAME, g.GRADE
+FROM Students s
+JOIN GRADE g ON s.ID = g.ID
+WHERE g.GRADE = (SELECT max(GRADE)
+                 FROM GRADE)
